@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Movies.Application;
 using Movies.Infrastructure;
+using Movies.Server.EndPoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.MapMoviesEndpoints();
 app.MapFallbackToFile("/index.html");
 
 app.Run();
