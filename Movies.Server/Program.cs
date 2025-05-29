@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Movies.Application;
 using Movies.Infrastructure;
 using Movies.Server.EndPoints;
@@ -17,6 +16,19 @@ builder.Services.AddDbContext<MoviesDbContext>(opt =>
 builder.Services.AddApplication();
 builder.Services.AddExceptionHandler<ExceptionHandler>();
 
+// Add CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", // You can choose any name for your policy
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:58292") // Replace with the origin of your React app
+                   .AllowAnyMethod() // Allows all HTTP methods (GET, POST, PUT, DELETE, etc.)
+                   .AllowAnyHeader(); // Allows all request headers
+                                      // .AllowCredentials(); // Uncomment if you need to handle cookies or authorization headers
+        });
+});
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -28,8 +40,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseExceptionHandler(_=> { });
+app.UseExceptionHandler(_ => { });
 app.UseHttpsRedirection();
+
+// Enable CORS middleware
+app.UseCors("AllowReactApp"); // Make sure this comes BEFORE your endpoint mapping
+
 app.MapMoviesEndpoints();
 app.MapFallbackToFile("/index.html");
 

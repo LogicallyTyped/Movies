@@ -1,11 +1,10 @@
 import { fileURLToPath, URL } from 'node:url';
-
-import { defineConfig } from 'vite';
 import plugin from '@vitejs/plugin-react';
+import child_process from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import child_process from 'child_process';
 import { env } from 'process';
+import { defineConfig } from 'vite';
 
 const baseFolder =
     env.APPDATA !== undefined && env.APPDATA !== ''
@@ -50,6 +49,11 @@ export default defineConfig({
             '^/weatherforecast': {
                 target,
                 secure: false
+            },
+            '^api/movies': { // Proxy requests to /api/movies
+                target: 'https://localhost:7034', // Your backend server
+                changeOrigin: true,              // Important for CORS
+                secure: true,                   // Set to true if your backend uses HTTPS
             }
         },
         port: parseInt(env.DEV_SERVER_PORT || '58292'),

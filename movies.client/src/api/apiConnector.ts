@@ -1,43 +1,63 @@
-// apiConnector.ts
-// Provides functions to interact with the backend API for the Movies client.
+import type { AxiosResponse } from "axios";
+import axios from "axios";
+import { API_BASE_URL } from "../../config.ts";
+import type { GetMovieByIdResponse } from "../models/getMovieByIdResponse";
+import type { GetMoviesResponse } from "../models/getMoviesResponse";
+import type { MovieDto } from "../models/movieDto";
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+const apiConnector = {
+    getMovies: async (): Promise<MovieDto[]> => {
+        try {
+            const response: AxiosResponse<GetMoviesResponse> =
+                await axios.get(`${API_BASE_URL}/movies`);
+            const movies = response.data.movieDtos.map(movie => ({
+                ...movie,
+                createdDate: movie.createdDate?.slice(0, 10) ?? ""
+            }));
+            return movies;
+        } catch (error) {
+            console.log("Error fetching movies:", error);
+            throw error;
+        }
+    },
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+    createMovie: async (movie: MovieDto): Promise<void> => {
+        try {
+            await axios.post<number>(`${API_BASE_URL}/movies`, movie);
+        } catch (error) {
+            console.log("Error creating movie:", error);
+            throw error;
+        }
+    },
 
-class ApiConnector {
-    private axiosInstance: AxiosInstance;
+    updateMovie: async (movie: MovieDto): Promise<void> => {
+        try {
+            await axios.put<number>(`${API_BASE_URL}/movies`, movie);
+        } catch (error) {
+            console.log("Error updating movie:", error);
+            throw error;
+        }
+    },
 
-    constructor(baseURL: string = API_BASE_URL) {
-        this.axiosInstance = axios.create({
-            baseURL,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-    }
+    deleteMovie: async (movieId: number): Promise<void> => {
+        try {
+            await axios.delete(`${API_BASE_URL}/movies/${movieId}`);
+        } catch (error) {
+            console.log("Error deleting movie:", error);
+            throw error;
+        }
+    },
 
-    public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-        const response: AxiosResponse<T> = await this.axiosInstance.get(url, config);
-        return response.data;
-    }
-
-    public async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
-        const response: AxiosResponse<T> = await this.axiosInstance.post(url, data, config);
-        return response.data;
-    }
-
-    public async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
-        const response: AxiosResponse<T> = await this.axiosInstance.put(url, data, config);
-        return response.data;
-    }
-
-    public async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-        const response: AxiosResponse<T> = await this.axiosInstance.delete(url, config);
-        return response.data;
+    getMovieById: async (movieId: number): Promise<MovieDto | undefined> => {
+        try {
+            const response =
+                await axios.get<GetMovieByIdResponse>(`${API_BASE_URL}/movies/${movieId}`);
+            return response.data.movieDto;
+        } catch (error) {
+            console.log("Error fetching movie by ID:", error);
+            throw error;
+        }
     }
 }
-
-const apiConnector = new ApiConnector();
 
 export default apiConnector;
