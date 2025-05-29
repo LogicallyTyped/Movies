@@ -1,5 +1,6 @@
 import { Button, Container } from "@mui/material";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import apiConnector from "../../api/apiConnector.ts";
 import type { MovieDto } from "../../models/movieDto.ts";
 import MovieTableItem from "./MovieTableItem.tsx";
@@ -39,7 +40,9 @@ export default function MovieTable() {
                         )}
                     </tbody>
                 </table>
-                <Button sx={{ float: 'right' }} type="button" variant="contained" color="success">Create Movie</Button>
+                <NavLink to="/createMovie">
+                    <Button sx={{ float: 'right' }} type="button" variant="contained" color="success">Create Movie</Button>
+                </NavLink>
             </Container>
         </>
     );

@@ -13,14 +13,10 @@ builder.Services.AddDbContext<MoviesDbContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("DbConnectionString"));
 });
 
-builder.Services.AddApplication();
-builder.Services.AddExceptionHandler<ExceptionHandler>();
-
 // Add CORS services
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp", // You can choose any name for your policy
-        policy =>
+    options.AddPolicy("AllowReactApp", policy =>
         {
             policy.WithOrigins("https://localhost:58292") // Replace with the origin of your React app
                    .AllowAnyMethod() // Allows all HTTP methods (GET, POST, PUT, DELETE, etc.)
@@ -28,6 +24,9 @@ builder.Services.AddCors(options =>
                                       // .AllowCredentials(); // Uncomment if you need to handle cookies or authorization headers
         });
 });
+
+builder.Services.AddApplication();
+builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 var app = builder.Build();
 
@@ -41,11 +40,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseExceptionHandler(_ => { });
-app.UseHttpsRedirection();
-
 // Enable CORS middleware
 app.UseCors("AllowReactApp"); // Make sure this comes BEFORE your endpoint mapping
 
+app.UseHttpsRedirection();
 app.MapMoviesEndpoints();
 app.MapFallbackToFile("/index.html");
 

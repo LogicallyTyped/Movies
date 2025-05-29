@@ -1,21 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, type RouteObject } from 'react-router-dom';
+import App from '../App';
+import MovieForm from '../components/movies/MovieForm';
+import MovieTable from '../components/movies/MovieTable';
 
-// Import your page components here
-import Home from '../pages/Home';
-import Movies from '../pages/Movies';
-import MovieDetails from '../pages/MovieDetails';
-import NotFound from '../pages/NotFound';
+export const routes: RouteObject[] = [
+    {
+        path: '/',
+        element: <App />,
+        children: [
+            { path: 'createMovie', element: <MovieForm key='create' /> },
+            { path: 'editMovie/:id', element: <MovieForm key='edit' /> },
+            { path: '*', element: <MovieTable /> }
+        ]
+    }
+];
 
-const AppRoutes: React.FC = () => (
-  <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/movies" element={<Movies />} />
-      <Route path="/movies/:id" element={<MovieDetails />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </Router>
-);
-
-export default AppRoutes;
+export const router = createBrowserRouter(routes)

@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
-import type { MovieDto } from "../../models/movieDto";
+import { NavLink } from "react-router-dom";
 import apiConnector from "../../api/apiConnector";
+import type { MovieDto } from "../../models/movieDto";
 
 interface Props {
     movie: MovieDto;
@@ -16,11 +17,15 @@ export default function MovieTableItem({movie}: Props) {
                 <td data-label="CreatedDate">{movie.createdDate}</td>
                 <td data-label="Category">{movie.category}</td>
                 <td data-label="Action">
-                    <Button color="warning" type="submit">Edit</Button>
-                    <Button color="error" type="button" onClick={async () => {
-                        await apiConnector.deleteMovie(movie.id!);
-                        window.location.reload();
-                    }}>Delete</Button>
+                    <NavLink to={`/editMovie/${movie.id}`}>
+                        <Button color="warning" type="submit">Edit</Button>
+                    </NavLink>
+                    <NavLink to={`/deleteMovie/${movie.id}`}>
+                        <Button color="error" type="button" onClick={async () => {
+                            await apiConnector.deleteMovie(movie.id!);
+                            window.location.reload();
+                        }}>Delete</Button>
+                    </NavLink>
                 </td>
             </tr>
         </>

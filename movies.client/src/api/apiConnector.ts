@@ -30,7 +30,7 @@ const apiConnector = {
         }
     },
 
-    updateMovie: async (movie: MovieDto): Promise<void> => {
+    editMovie: async (movie: MovieDto): Promise<void> => {
         try {
             await axios.put<number>(`${API_BASE_URL}/movies`, movie);
         } catch (error) {
@@ -48,7 +48,7 @@ const apiConnector = {
         }
     },
 
-    getMovieById: async (movieId: number): Promise<MovieDto | undefined> => {
+    getMovieById: async (movieId: string): Promise<MovieDto | undefined> => {
         try {
             const response =
                 await axios.get<GetMovieByIdResponse>(`${API_BASE_URL}/movies/${movieId}`);
