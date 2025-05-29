@@ -9,7 +9,7 @@ using Movies.Infrastructure;
 
 namespace Movies.Infrastructure.Migrations
 {
-    [DbContext(typeof(MoviesDBContext))]
+    [DbContext(typeof(MoviesDbContext))]
     partial class MoviesDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

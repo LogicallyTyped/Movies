@@ -3,9 +3,9 @@ using Movies.Domain.Entities;
 
 namespace Movies.Infrastructure;
 
-public class MoviesDBContext : DbContext
+public class MoviesDbContext : DbContext
 {
-    public MoviesDBContext(DbContextOptions options) : base(options)
+    public MoviesDbContext(DbContextOptions options) : base(options)
     {
     }
 
