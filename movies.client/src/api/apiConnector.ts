@@ -32,7 +32,7 @@ const apiConnector = {
 
     editMovie: async (movie: MovieDto): Promise<void> => {
         try {
-            await axios.put<number>(`${API_BASE_URL}/movies`, movie);
+            await axios.put<number>(`${API_BASE_URL}/movies/${movie.id}`, movie);
         } catch (error) {
             console.log("Error updating movie:", error);
             throw error;

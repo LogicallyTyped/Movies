@@ -33,7 +33,7 @@ export default function MovieForm() {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setMovie(prev => ({ ...prev, [name]: value }));
+        setMovie({ ...movie, [name]: value });
     };
 
     return (
