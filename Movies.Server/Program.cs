@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Movies.Application;
 using Movies.Infrastructure;
 using Movies.Server.EndPoints;
+using Movies.Server.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<MoviesDbContext>(opt =>
 });
 
 builder.Services.AddApplication();
+builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 var app = builder.Build();
 
@@ -26,6 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionHandler(_=> { });
 app.UseHttpsRedirection();
 app.MapMoviesEndpoints();
 app.MapFallbackToFile("/index.html");

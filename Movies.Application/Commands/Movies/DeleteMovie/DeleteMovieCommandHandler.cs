@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Movies.Contracts.Exceptions;
+using Movies.Domain.Entities;
 using Movies.Infrastructure;
 
 namespace Movies.Application.Commands.Movies.DeleteMovie;
@@ -17,7 +19,7 @@ public class DeleteMovieCommandHandler : IRequestHandler<DeleteMovieCommand, Uni
 
         if (movieToDelete == null)
         {
-             throw new KeyNotFoundException($"Movie with ID {request.Id} not found.");
+            throw new NotFoundExecption($"{nameof(Movie)} with {nameof(Movie.Id)}: {request.Id}" + $"was not found in database.");
         }
 
         _moviesDbContext.Movies.Remove(movieToDelete);

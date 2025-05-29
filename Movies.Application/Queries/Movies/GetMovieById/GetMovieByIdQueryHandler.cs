@@ -1,7 +1,9 @@
 ﻿using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Movies.Contracts.Exceptions;
 using Movies.Contracts.Responses;
+using Movies.Domain.Entities;
 using Movies.Infrastructure;
 
 namespace Movies.Application.Queries.Movies.GetMovieById;
@@ -19,7 +21,7 @@ public class GetMovieByIdQueryHandler : IRequestHandler<GetMovieByIdQuery, GetMo
         var movie = await _moviesDbContext.Movies.FirstOrDefaultAsync(m => m.Id == request.Id, cancellationToken);
         if (movie is null)
         {
-            throw new Exception($"Movie with ID {request.Id} not found.");
+            throw new NotFoundExecption($"{nameof(Movie)} with {nameof(Movie.Id)}: {request.Id}" + $"was not found in database.");
         }
         return movie.Adapt<GetMovieByIdResponse>();
     }

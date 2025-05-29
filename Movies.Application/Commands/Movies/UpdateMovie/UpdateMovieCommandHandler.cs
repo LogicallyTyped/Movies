@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Movies.Contracts.Exceptions;
+using Movies.Domain.Entities;
 using Movies.Infrastructure;
 
 namespace Movies.Application.Commands.Movies.UpdateMovie;
@@ -18,7 +20,7 @@ public class UpdateMovieCommandHandler : IRequestHandler<UpdateMovieCommand, Uni
 
         if (movieToUpdate == null)
         {
-            throw new KeyNotFoundException($"Movie with ID {request.Id} not found.");
+            throw new NotFoundExecption($"{nameof(Movie)} with {nameof(Movie.Id)}: {request.Id}" + $"was not found in database.");
         }
 
         movieToUpdate.Title = request.Title;
