@@ -6,7 +6,7 @@ import MovieTable from '../components/movies/MovieTable';
 export const routes: RouteObject[] = [
     {
         path: '/',
-        element: <App />,
+        element: <App/>,
         children: [
             { path: 'createMovie', element: <MovieForm key='create' /> },
             { path: 'editMovie/:id', element: <MovieForm key='edit' /> },

@@ -18,9 +18,9 @@ public class UpdateMovieCommandHandler : IRequestHandler<UpdateMovieCommand, Uni
         var movieToUpdate = await _moviesDbContext.Movies
             .FirstOrDefaultAsync(m => m.Id == request.Id, cancellationToken);
 
-        if (movieToUpdate == null)
+        if (movieToUpdate is not null)
         {
-            throw new NotFoundExecption($"{nameof(Movie)} with {nameof(Movie.Id)}: {request.Id}" + $"was not found in database.");
+            throw new ArgumentException($"{nameof(Movie)} with {nameof(Movie.Id)}: {request.Id}" + $"was not found in database.");
         }
 
         movieToUpdate.Title = request.Title;
