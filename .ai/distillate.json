@@ -240,7 +240,7 @@
     ],
     "operational_notes": [
       "CORS policy (\"AllowReactApp\" in Program.cs) is hardcoded to a single origin (https://localhost:58292) rather than read from configuration — update it when deploying against a different frontend origin.",
-      "The SQLite connection string (ConnectionStrings:DbConnectionString) defaults to a relative path (Data Source=movies.db) resolved from the process working directory — verify it before running outside local dev.",
+      "The SQLite connection string (ConnectionStrings:DbConnectionString, sensitive) is configured as a relative file path resolved against the process working directory rather than an absolute path — verify it before running outside local dev.",
       "Movies.Server/movies.db (and its -shm/-wal sidecar files) are committed to the repository; treat as sample/dev data only, not a place to store real or sensitive data."
     ]
   }
