@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
   "repo_root": "C:\\source\\github.com\\LogicallyTyped\\Movies",
-  "distilled_from_sha": "a805589550ccc625d4a0e40842cfe5dc6268b879",
+  "distilled_from_sha": "c12684b1aa7a1e4e21e0c5344e5376cb19f64ab8",
   "verification": {
-    "verified_sha": "a805589550ccc625d4a0e40842cfe5dc6268b879",
-    "verified_at": "2026-08-16T16:20:15Z",
-    "verified_by": "claude-sonnet (TASK-5 supervised pilot doc-verify)"
+    "verified_sha": "c12684b1aa7a1e4e21e0c5344e5376cb19f64ab8",
+    "verified_at": "2026-08-16T21:50:11Z",
+    "verified_by": "claude-sonnet (post-fix re-verify)"
   },
   "deterministic": {
     "file_tree": [
@@ -19,6 +19,8 @@
       "Movies.Infrastructure",
       "Movies.Server",
       "Movies.sln",
+      "README.md",
+      "docs",
       "movies.client",
       "package-lock.json",
       "package.json"
@@ -120,12 +122,134 @@
         "kind": "runtime"
       },
       {
+        "name": "@mui/material",
+        "version": "^7.1.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "axios",
+        "version": "^1.9.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "react",
+        "version": "^19.1.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "react-dom",
+        "version": "^19.1.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "react-router-dom",
+        "version": "^7.6.1",
+        "kind": "runtime"
+      },
+      {
+        "name": "semantic-ui-css",
+        "version": "^2.5.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "semver",
+        "version": "^7.7.2",
+        "kind": "runtime"
+      },
+      {
+        "name": "yarn",
+        "version": "^1.22.22",
+        "kind": "runtime"
+      },
+      {
+        "name": "@eslint/js",
+        "version": "^9.25.0",
+        "kind": "dev"
+      },
+      {
+        "name": "@types/node",
+        "version": "^22",
+        "kind": "dev"
+      },
+      {
+        "name": "@types/react",
+        "version": "^19.1.2",
+        "kind": "dev"
+      },
+      {
+        "name": "@types/react-dom",
+        "version": "^19.1.2",
+        "kind": "dev"
+      },
+      {
+        "name": "@vitejs/plugin-react",
+        "version": "^4.4.1",
+        "kind": "dev"
+      },
+      {
+        "name": "eslint",
+        "version": "^9.25.0",
+        "kind": "dev"
+      },
+      {
+        "name": "eslint-plugin-react-hooks",
+        "version": "^5.2.0",
+        "kind": "dev"
+      },
+      {
+        "name": "eslint-plugin-react-refresh",
+        "version": "^0.4.19",
+        "kind": "dev"
+      },
+      {
+        "name": "globals",
+        "version": "^16.0.0",
+        "kind": "dev"
+      },
+      {
+        "name": "typescript",
+        "version": "~5.8.3",
+        "kind": "dev"
+      },
+      {
+        "name": "typescript-eslint",
+        "version": "^8.30.1",
+        "kind": "dev"
+      },
+      {
+        "name": "vite",
+        "version": "^6.3.5",
+        "kind": "dev"
+      },
+      {
+        "name": "@emotion/styled",
+        "version": "^11.14.0",
+        "kind": "runtime"
+      },
+      {
         "name": "semantic-ui-react",
         "version": "^2.1.5",
         "kind": "runtime"
       }
     ],
-    "build_test_run": [],
+    "build_test_run": [
+      {
+        "kind": "run",
+        "command": "npm run dev"
+      },
+      {
+        "kind": "build",
+        "command": "npm run build"
+      },
+      {
+        "kind": "run",
+        "command": "npm run lint"
+      },
+      {
+        "kind": "run",
+        "command": "npm run preview"
+      }
+    ],
     "entrypoints": [
       {
         "type": "cli",
@@ -193,55 +317,45 @@
     "docs_index": [
       ".ai/CONTEXT.md",
       ".ai/distillate.json",
-      ".ai/distillation-ollama.md"
+      ".ai/distillation-ollama.md",
+      ".ai/findings.md",
+      "docs/architecture.md"
     ],
     "ado_org": null,
     "employer": null,
     "team": null
   },
   "interpretive": {
-    "purpose": "A movie management application with CRUD operations for movies using ASP.NET Core, MediatR, Entity Framework Core, and SQLite.",
+    "purpose": "A full-stack movie-catalog CRUD application with ASP.NET Core backend and Vite + React frontend.",
     "consumers": [
-      "Frontend React app",
-      "API clients"
+      "movies.client React app (primary UI consumer)",
+      "Any HTTP API client hitting /api/movies endpoints directly"
     ],
     "components": [
       {
-        "name": "Movies.Application",
-        "responsibility": "Handles business logic and validation using MediatR (commands/queries, handlers, FluentValidation pipeline behavior, Mapster mapping config)."
-      },
-      {
-        "name": "Movies.Contracts",
-        "responsibility": "Shared DTOs, request/response models, and custom exceptions/validation-error types consumed by both Movies.Application and Movies.Server."
-      },
-      {
-        "name": "Movies.Domain",
-        "responsibility": "Defines domain entities like Movie."
-      },
-      {
-        "name": "Movies.Infrastructure",
-        "responsibility": "Manages data access with Entity Framework Core and SQLite."
-      },
-      {
         "name": "Movies.Server",
-        "responsibility": "Exposes HTTP endpoints for CRUD operations on movies (ASP.NET Core minimal API, Swagger, CORS, exception-handler middleware, SPA proxy to movies.client)."
+        "responsibility": "ASP.NET Core minimal-API host; maps /api/movies routes, serves Swagger UI in Development, and proxies to the movies.client SPA dev server."
+      },
+      {
+        "name": "movies.client",
+        "responsibility": "React SPA consuming the API and wired into the .NET solution via Microsoft.AspNetCore.SpaProxy."
       }
     ],
-    "data_flow_summary": "Requests from clients are processed by Movies.Server, which uses MediatR to route them to appropriate handlers in Movies.Application. Handlers interact with the database via Movies.Infrastructure and return responses.",
+    "data_flow_summary": "API requests are handled by MediatR, validated using FluentValidation, mapped with Mapster, and persisted using Entity Framework Core with SQLite.",
     "integration_points": [
       {
-        "name": "Database",
-        "description": "SQLite database for storing movie data."
+        "name": "SQLite database",
+        "description": "Persistent storage for movie data, accessed through EF Core (Microsoft.Data.Sqlite / Microsoft.EntityFrameworkCore.Sqlite). Connection string name: ConnectionStrings:DbConnectionString."
       },
       {
-        "name": "Frontend React app",
-        "description": "Consumes API endpoints exposed by Movies.Server."
+        "name": "movies.client (frontend SPA)",
+        "description": "React/Vite SPA that consumes the /api/movies HTTP endpoints exposed by Movies.Server; proxied together in local dev via Microsoft.AspNetCore.SpaProxy."
       }
     ],
     "operational_notes": [
-      "CORS policy (\"AllowReactApp\" in Program.cs) is hardcoded to a single origin (https://localhost:58292) rather than read from configuration — update it when deploying against a different frontend origin.",
-      "The SQLite connection string (ConnectionStrings:DbConnectionString, sensitive) is configured as a relative file path resolved against the process working directory rather than an absolute path — verify it before running outside local dev.",
-      "Movies.Server/movies.db (and its -shm/-wal sidecar files) are committed to the repository; treat as sample/dev data only, not a place to store real or sensitive data."
+      "No automated tests present in the repository.",
+      "Configuration is read from ASP.NET Core's standard appsettings.json / appsettings.Development.json / environment-variable layering.",
+      "Ensure .NET 8 SDK and Node.js are installed for development."
     ]
   }
 }

@@ -5,37 +5,38 @@
 
 ## Purpose
 
-A movie management application with CRUD operations for movies using ASP.NET Core, MediatR, Entity Framework Core, and SQLite.
+A full-stack movie-catalog CRUD application with ASP.NET Core backend and Vite + React frontend.
 
 ## Consumers
 
-- Frontend React app
-- API clients
+- movies.client React app (primary UI consumer)
+- Any HTTP API client hitting /api/movies endpoints directly
 
 ## Components
 
-- **Movies.Application** — Handles business logic and validation using MediatR.
-- **Movies.Domain** — Defines domain entities like Movie.
-- **Movies.Infrastructure** — Manages data access with Entity Framework Core and SQLite.
-- **Movies.Server** — Exposes HTTP endpoints for CRUD operations on movies.
+- **Movies.Server** — ASP.NET Core minimal-API host; maps /api/movies routes, serves Swagger UI in Development, and proxies to the movies.client SPA dev server.
+- **movies.client** — React SPA consuming the API and wired into the .NET solution via Microsoft.AspNetCore.SpaProxy.
 
 ## Data Flow
 
-Requests from clients are processed by Movies.Server, which uses MediatR to route them to appropriate handlers in Movies.Application. Handlers interact with the database via Movies.Infrastructure and return responses.
+API requests are handled by MediatR, validated using FluentValidation, mapped with Mapster, and persisted using Entity Framework Core with SQLite.
 
 ## Integration Points
 
-- **Database** — SQLite database for storing movie data.
-- **Frontend React app** — Consumes API endpoints exposed by Movies.Server.
+- **MediatR** — Handles commands/queries for creating, listing, updating, and deleting movies.
+- **FluentValidation** — Validates requests before processing them in the application layer.
+- **Mapster** — Maps between domain entities and DTOs for response generation.
+- **Entity Framework Core with SQLite** — Provides persistence for movie data.
 
 ## Operational Notes / Gotchas
 
-- Ensure CORS policy allows requests from the frontend origin.
-- Validate connection string configuration for SQLite database.
+- No automated tests present in the repository.
+- Configuration is read from ASP.NET Core's standard appsettings.json / appsettings.Development.json / environment-variable layering.
+- Ensure .NET 8 SDK and Node.js are installed for development.
 
 ## Deterministic Facts
 
-- Dependencies: 20
+- Dependencies: 41
 - Routes: 5
 - Entrypoints: 5
 - Config keys: 4
@@ -73,5 +74,26 @@ Requests from clients are processed by Movies.Server, which uses MediatR to rout
 - Microsoft.EntityFrameworkCore.Sqlite (9.0.5) — runtime
 - SQLitePCLRaw.bundle_e_sqlite3 (2.1.11) — runtime
 - Swashbuckle.AspNetCore (6.6.2) — runtime
+- @emotion/styled (^11.14.0) — runtime
+- @mui/material (^7.1.0) — runtime
+- axios (^1.9.0) — runtime
+- react (^19.1.0) — runtime
+- react-dom (^19.1.0) — runtime
+- react-router-dom (^7.6.1) — runtime
+- semantic-ui-css (^2.5.0) — runtime
+- semver (^7.7.2) — runtime
+- yarn (^1.22.22) — runtime
+- @eslint/js (^9.25.0) — dev
+- @types/node (^22) — dev
+- @types/react (^19.1.2) — dev
+- @types/react-dom (^19.1.2) — dev
+- @vitejs/plugin-react (^4.4.1) — dev
+- eslint (^9.25.0) — dev
+- eslint-plugin-react-hooks (^5.2.0) — dev
+- eslint-plugin-react-refresh (^0.4.19) — dev
+- globals (^16.0.0) — dev
+- typescript (~5.8.3) — dev
+- typescript-eslint (^8.30.1) — dev
+- vite (^6.3.5) — dev
 - @emotion/styled (^11.14.0) — runtime
 - semantic-ui-react (^2.1.5) — runtime

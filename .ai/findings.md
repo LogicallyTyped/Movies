@@ -50,3 +50,41 @@ field untouched; flagging the parser gap.
 
 Filed: 2026-08-16, TASK-5 supervised pilot doc-verify (advisor-prompted
 follow-up pass), `claude-sonnet`.
+
+## 2026-08-16 — Stage 2 re-verification after distiller fix (Sonnet, TASK-5 re-run)
+
+**First finding above ("Node dependency parser misses the frontend project's
+package.json") — RESOLVED.** The distiller has been fixed and the distillate
+regenerated (`distilled_from_sha` unchanged at
+`c12684b1aa7a1e4e21e0c5344e5376cb19f64ab8` — same commit, re-distilled):
+`deterministic.dependencies` now walks both `package.json` files (repo root
+and `movies.client/`) as well as all five `.csproj` files, and reports 41
+entries (up from 20), including the real frontend manifest (`react`,
+`react-dom`, `axios`, `react-router-dom`, `@mui/material`, `vite`,
+`typescript`, etc. from `movies.client/package.json`). README § Dependencies
+has been rewritten to reflect the full deduplicated set including the
+front-end packages. Note the raw 41-entry array still contains duplicates
+(e.g. `MediatR`, `Microsoft.EntityFrameworkCore`, `Microsoft.EntityFrameworkCore.Design`,
+and `@emotion/styled` each appear twice — legitimately, from being referenced
+by more than one `.csproj` / by both `package.json` files) — left as-is per
+the verify-stage hard rule against hand-editing `deterministic.*`; the README
+presents the deduplicated, human-readable view.
+
+**Second and third findings above ("four class libraries misclassified as
+`cli`" and "`<Version>` child-element form not parsed") — still open,
+unaffected by this fix.** Re-checked against the regenerated distillate:
+`deterministic.entrypoints` still types all four class-library `.csproj`
+files as `"cli"`, and `Microsoft.AspNetCore.SpaProxy` still resolves to
+`"version": null`. Neither was in scope of the two bugs this re-distill
+fixed. Left untouched per the same hard rule; README continues to override
+both (real entrypoints only; SpaProxy's true 9.0.5 version noted where it
+matters).
+
+**Interpretive fields reverted on regeneration, re-corrected.** Regenerating
+the distillate reset `interpretive.integration_points` to the distiller's raw
+output (`MediatR`, `FluentValidation`, `Mapster`, `Entity Framework Core with
+SQLite`) — all in-process library usage, not external systems per the
+schema's field definition. Re-corrected to the two genuine external
+integration points already established in `docs/architecture.md` (the SQLite
+database via EF Core, and the `movies.client` frontend SPA consuming the API
+over HTTP).
