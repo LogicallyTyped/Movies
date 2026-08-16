@@ -1,0 +1,247 @@
+{
+  "schema_version": "1.0.0",
+  "repo_root": "C:\\source\\github.com\\LogicallyTyped\\Movies",
+  "distilled_from_sha": "a805589550ccc625d4a0e40842cfe5dc6268b879",
+  "verification": {
+    "verified_sha": "a805589550ccc625d4a0e40842cfe5dc6268b879",
+    "verified_at": "2026-08-16T16:20:15Z",
+    "verified_by": "claude-sonnet (TASK-5 supervised pilot doc-verify)"
+  },
+  "deterministic": {
+    "file_tree": [
+      ".ai",
+      ".editorconfig",
+      ".gitattributes",
+      ".gitignore",
+      "Movies.Application",
+      "Movies.Contracts",
+      "Movies.Domain",
+      "Movies.Infrastructure",
+      "Movies.Server",
+      "Movies.sln",
+      "movies.client",
+      "package-lock.json",
+      "package.json"
+    ],
+    "dependencies": [
+      {
+        "name": "FluentValidation.DependencyInjectionExtensions",
+        "version": "12.0.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "Mapster",
+        "version": "7.4.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "Mapster.DependencyInjection",
+        "version": "1.0.1",
+        "kind": "runtime"
+      },
+      {
+        "name": "MediatR",
+        "version": "12.5.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "MediatR.Contracts",
+        "version": "2.0.1",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Design",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Relational",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Tools",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "MediatR",
+        "version": "12.5.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.AspNetCore.OpenApi",
+        "version": "8.0.16",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.AspNetCore.SpaProxy",
+        "version": null,
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.Data.Sqlite",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Design",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Sqlite",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "SQLitePCLRaw.bundle_e_sqlite3",
+        "version": "2.1.11",
+        "kind": "runtime"
+      },
+      {
+        "name": "Swashbuckle.AspNetCore",
+        "version": "6.6.2",
+        "kind": "runtime"
+      },
+      {
+        "name": "@emotion/styled",
+        "version": "^11.14.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "semantic-ui-react",
+        "version": "^2.1.5",
+        "kind": "runtime"
+      }
+    ],
+    "build_test_run": [],
+    "entrypoints": [
+      {
+        "type": "cli",
+        "path": "Movies.Application/Movies.Application.csproj"
+      },
+      {
+        "type": "cli",
+        "path": "Movies.Contracts/Movies.Contracts.csproj"
+      },
+      {
+        "type": "cli",
+        "path": "Movies.Domain/Movies.Domain.csproj"
+      },
+      {
+        "type": "cli",
+        "path": "Movies.Infrastructure/Movies.Infrastructure.csproj"
+      },
+      {
+        "type": "http",
+        "path": "Movies.Server/Program.cs"
+      }
+    ],
+    "config_keys": [
+      {
+        "name": "AllowedHosts",
+        "sensitive": false
+      },
+      {
+        "name": "ConnectionStrings:DbConnectionString",
+        "sensitive": true
+      },
+      {
+        "name": "Logging:LogLevel:Default",
+        "sensitive": false
+      },
+      {
+        "name": "Logging:LogLevel:Microsoft.AspNetCore",
+        "sensitive": false
+      }
+    ],
+    "scheduled_tasks": [],
+    "services": [],
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/api/movies"
+      },
+      {
+        "method": "POST",
+        "path": "/api/movies"
+      },
+      {
+        "method": "DELETE",
+        "path": "/api/movies/{id}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/movies/{id}"
+      },
+      {
+        "method": "PUT",
+        "path": "/api/movies/{id}"
+      }
+    ],
+    "docs_index": [
+      ".ai/CONTEXT.md",
+      ".ai/distillate.json",
+      ".ai/distillation-ollama.md"
+    ],
+    "ado_org": null,
+    "employer": null,
+    "team": null
+  },
+  "interpretive": {
+    "purpose": "A movie management application with CRUD operations for movies using ASP.NET Core, MediatR, Entity Framework Core, and SQLite.",
+    "consumers": [
+      "Frontend React app",
+      "API clients"
+    ],
+    "components": [
+      {
+        "name": "Movies.Application",
+        "responsibility": "Handles business logic and validation using MediatR (commands/queries, handlers, FluentValidation pipeline behavior, Mapster mapping config)."
+      },
+      {
+        "name": "Movies.Contracts",
+        "responsibility": "Shared DTOs, request/response models, and custom exceptions/validation-error types consumed by both Movies.Application and Movies.Server."
+      },
+      {
+        "name": "Movies.Domain",
+        "responsibility": "Defines domain entities like Movie."
+      },
+      {
+        "name": "Movies.Infrastructure",
+        "responsibility": "Manages data access with Entity Framework Core and SQLite."
+      },
+      {
+        "name": "Movies.Server",
+        "responsibility": "Exposes HTTP endpoints for CRUD operations on movies (ASP.NET Core minimal API, Swagger, CORS, exception-handler middleware, SPA proxy to movies.client)."
+      }
+    ],
+    "data_flow_summary": "Requests from clients are processed by Movies.Server, which uses MediatR to route them to appropriate handlers in Movies.Application. Handlers interact with the database via Movies.Infrastructure and return responses.",
+    "integration_points": [
+      {
+        "name": "Database",
+        "description": "SQLite database for storing movie data."
+      },
+      {
+        "name": "Frontend React app",
+        "description": "Consumes API endpoints exposed by Movies.Server."
+      }
+    ],
+    "operational_notes": [
+      "CORS policy (\"AllowReactApp\" in Program.cs) is hardcoded to a single origin (https://localhost:58292) rather than read from configuration — update it when deploying against a different frontend origin.",
+      "The SQLite connection string (ConnectionStrings:DbConnectionString) defaults to a relative path (Data Source=movies.db) resolved from the process working directory — verify it before running outside local dev.",
+      "Movies.Server/movies.db (and its -shm/-wal sidecar files) are committed to the repository; treat as sample/dev data only, not a place to store real or sensitive data."
+    ]
+  }
+}
