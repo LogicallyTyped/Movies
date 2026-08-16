@@ -89,6 +89,6 @@ No `docs/adr/` directory exists in this repo yet.
 
 ---
 schema_version: 1.0.0
-distilled_from_sha: a805589550ccc625d4a0e40842cfe5dc6268b879
-verified_sha: a805589550ccc625d4a0e40842cfe5dc6268b879
-verified_at: 2026-08-16T16:20:15Z
+distilled_from_sha: c12684b1aa7a1e4e21e0c5344e5376cb19f64ab8
+verified_sha: c12684b1aa7a1e4e21e0c5344e5376cb19f64ab8
+verified_at: 2026-08-16T21:50:11Z

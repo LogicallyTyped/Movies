@@ -76,15 +76,34 @@ connection string is consumed):
 
 ## Dependencies
 
-Backend (.NET, `net8.0`): ASP.NET Core minimal APIs, `MediatR` (CQRS-style
-command/query dispatch), `FluentValidation` (request validation pipeline behavior),
-`Mapster` (object-to-object mapping), `Microsoft.EntityFrameworkCore` +
-`Microsoft.EntityFrameworkCore.Sqlite` (persistence), `Swashbuckle.AspNetCore`
+`deterministic.dependencies` in `.ai/distillate.json` now walks every manifest in
+the repo (five `.csproj` files plus both `package.json` files) and reports 41 raw
+entries, up from 20 in the prior distillate — the earlier run only read the repo
+root and missed `movies.client/package.json` entirely (see `.ai/findings.md`).
+Deduplicated by package:
+
+Backend (.NET, `net8.0`): `MediatR` + `MediatR.Contracts` (CQRS-style command/query
+dispatch), `FluentValidation.DependencyInjectionExtensions` (request validation
+pipeline behavior), `Mapster` + `Mapster.DependencyInjection` (object-to-object
+mapping), `Microsoft.EntityFrameworkCore` + `.Design` + `.Relational` + `.Tools`
++ `.Sqlite`, `Microsoft.Data.Sqlite`, `SQLitePCLRaw.bundle_e_sqlite3`
+(persistence), `Microsoft.AspNetCore.OpenApi` + `Swashbuckle.AspNetCore`
 (Swagger/OpenAPI), and `Microsoft.AspNetCore.SpaProxy` (SPA dev-server proxying).
 
-Frontend (`movies.client`, Node/npm): React + React DOM, React Router, Axios (API
-calls), `@mui/material`, `semantic-ui-react` / `semantic-ui-css`, and Vite +
-TypeScript for the build/dev toolchain.
+Frontend (`movies.client/package.json`, Node/npm) — the SPA's real manifest:
+`react` + `react-dom` + `react-router-dom` (app shell/routing), `axios` (API
+calls), `@mui/material` + `@emotion/styled` (UI components actually imported by
+`App.tsx` and the movie components), `semantic-ui-css` (base stylesheet, imported
+in `main.tsx`), `semver` and `yarn` (declared but not imported by any source
+file — carried along as-is), and dev-only `vite`, `typescript` +
+`typescript-eslint`, `eslint` + its plugins, and `@vitejs/plugin-react` for the
+build/lint toolchain.
+
+A second, stray `package.json` at the repo root also declares `@emotion/styled`
+and `semantic-ui-react` — `semantic-ui-react` is not imported anywhere in
+`movies.client/src` (only `semantic-ui-css` is). It appears to be a leftover file
+rather than a real manifest (no `workspaces` key, not referenced by
+`movies.client.esproj` or the `.sln`) — see `.ai/findings.md`.
 
 ## Operational surface
 
@@ -102,6 +121,6 @@ Express / Kestrel profiles).
 
 ---
 schema_version: 1.0.0
-distilled_from_sha: a805589550ccc625d4a0e40842cfe5dc6268b879
-verified_sha: a805589550ccc625d4a0e40842cfe5dc6268b879
-verified_at: 2026-08-16T16:20:15Z
+distilled_from_sha: c12684b1aa7a1e4e21e0c5344e5376cb19f64ab8
+verified_sha: c12684b1aa7a1e4e21e0c5344e5376cb19f64ab8
+verified_at: 2026-08-16T21:50:11Z
