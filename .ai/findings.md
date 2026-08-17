@@ -88,3 +88,59 @@ schema's field definition. Re-corrected to the two genuine external
 integration points already established in `docs/architecture.md` (the SQLite
 database via EF Core, and the `movies.client` frontend SPA consuming the API
 over HTTP).
+
+### 2026-08-16 — Overnight Code Review (Opus high)
+- **Status:** Open
+- **Standard:** `conventions/repo-documentation.md` (integration_points = external
+  systems only). Note: `conventions/code-quality.md` is scoped "all stacks (code,
+  not docs)" and so does not govern these doc artifacts — no code-quality
+  violations are in scope. The two hand-authored deliverables reviewed
+  (`README.md`, `docs/architecture.md`) have **no violations found**.
+
+Reviewed the full branch diff vs `master` (`.ai/distillate.json`,
+`.ai/distillation-ollama.md`, `.ai/findings.md`, `README.md`,
+`docs/architecture.md`) at Opus-high effort — correctness, security, missed edge
+cases, STANDARDS compliance.
+
+**Verification (README.md + docs/architecture.md — all claims checked against
+source, all confirmed):**
+- `net8.0` across all five `.csproj` files.
+- All five routes (`GET/POST/PUT/DELETE /api/movies`, `GET /api/movies/{id}`)
+  match `MoviesEndPoints.cs`.
+- CORS origin `https://localhost:58292` and SpaProxy `9.0.5` match
+  `Program.cs` / csproj.
+- Connection string `Data Source=movies.db` (relative path) matches
+  `appsettings.json`; documented by name only, value never exposed.
+- `movies.db` + `-shm`/`-wal` sidecars are git-tracked (matches gotcha).
+- Named types (`MovieDto`, `CreateMovieRequest`, `UpdateMovieRequest`,
+  `GetMoviesResponse`, `ValidationError`, `CustomValidationException`,
+  `BaseEntity`, `Movie`, and the source-typo `NotFoundExecption`) all exist as
+  documented.
+- Dependency count 41; MUI/emotion imported in `App.tsx` + movie components,
+  `semantic-ui-css` in `main.tsx`, `semantic-ui-react`/`semver`/`yarn` unused —
+  all match.
+- `launchSettings.json` profiles (IIS Express / Kestrel http+https, all local)
+  match "no operational surface."
+- Security: no secrets, connection-string values, ARNs, or tokens present in the
+  diff (checklist item from `code-quality.md` § Code review checklist satisfied).
+
+**Single finding (low severity, borderline):**
+- **`.ai/distillation-ollama.md:24-29`** — the `## Integration Points` section
+  lists in-process libraries (`MediatR`, `FluentValidation`, `Mapster`,
+  `Entity Framework Core with SQLite`) as integration points. This contradicts
+  the corrected canonical views in `distillate.json` and `docs/architecture.md`,
+  which name only the two genuine external integrations (SQLite DB via EF Core,
+  frontend SPA over HTTP), per the `repo-documentation.md` field definition.
+  - *Mitigation:* the file carries a `Do not hand-edit` header and is an explicit
+    raw machine-generated provenance artifact from `ops_tools.repo_distiller`
+    (model `qwen2.5-coder:14b`). The downstream re-correction is already recorded
+    in this findings file (see the "Interpretive fields reverted on regeneration"
+    note directly above). No reader-facing canonical doc is wrong.
+  - *Recommendation:* leave the artifact untouched (hand-editing it violates its
+    own contract and the verify-stage hard rule against editing distiller output);
+    resolution belongs in `ops_tools.repo_distiller`'s integration_points
+    prompt/logic, tracked as the existing distiller parser/prompt gaps in this
+    file. No action required on the reviewed branch.
+
+**Conclusion:** the branch is accurate and safe to merge as documentation. No
+correctness, security, or edge-case defects in the hand-authored deliverables.
