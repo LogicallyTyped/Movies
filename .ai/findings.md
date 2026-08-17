@@ -91,11 +91,13 @@ over HTTP).
 
 ### 2026-08-16 — Overnight Code Review (Opus high)
 - **Status:** Open
-- **Standard:** `conventions/repo-documentation.md` (integration_points = external
-  systems only). Note: `conventions/code-quality.md` is scoped "all stacks (code,
-  not docs)" and so does not govern these doc artifacts — no code-quality
-  violations are in scope. The two hand-authored deliverables reviewed
-  (`README.md`, `docs/architecture.md`) have **no violations found**.
+- **Standard:** `conventions/repo-distillate-schema.md` —
+  `interpretive.integration_points[]` maps to "§ `docs/architecture.md` (External
+  integration points)", i.e. external systems only (verified at
+  `repo-distillate-schema.md:59-60`). Note: `conventions/code-quality.md` is
+  scoped "all stacks (code, not docs)" and so does not govern these doc artifacts
+  — no code-quality violations are in scope. The two hand-authored deliverables
+  reviewed (`README.md`, `docs/architecture.md`) have **no violations found**.
 
 Reviewed the full branch diff vs `master` (`.ai/distillate.json`,
 `.ai/distillation-ollama.md`, `.ai/findings.md`, `README.md`,
@@ -130,7 +132,8 @@ source, all confirmed):**
   `Entity Framework Core with SQLite`) as integration points. This contradicts
   the corrected canonical views in `distillate.json` and `docs/architecture.md`,
   which name only the two genuine external integrations (SQLite DB via EF Core,
-  frontend SPA over HTTP), per the `repo-documentation.md` field definition.
+  frontend SPA over HTTP), per the `repo-distillate-schema.md` field definition
+  (`integration_points` → "External integration points").
   - *Mitigation:* the file carries a `Do not hand-edit` header and is an explicit
     raw machine-generated provenance artifact from `ops_tools.repo_distiller`
     (model `qwen2.5-coder:14b`). The downstream re-correction is already recorded
