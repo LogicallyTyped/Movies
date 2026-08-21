@@ -1,0 +1,361 @@
+{
+  "schema_version": "1.0.0",
+  "repo_root": "C:\\source\\github.com\\LogicallyTyped\\Movies",
+  "distilled_from_sha": "c12684b1aa7a1e4e21e0c5344e5376cb19f64ab8",
+  "verification": {
+    "verified_sha": "c12684b1aa7a1e4e21e0c5344e5376cb19f64ab8",
+    "verified_at": "2026-08-16T21:50:11Z",
+    "verified_by": "claude-sonnet (post-fix re-verify)"
+  },
+  "deterministic": {
+    "file_tree": [
+      ".ai",
+      ".editorconfig",
+      ".gitattributes",
+      ".gitignore",
+      "Movies.Application",
+      "Movies.Contracts",
+      "Movies.Domain",
+      "Movies.Infrastructure",
+      "Movies.Server",
+      "Movies.sln",
+      "README.md",
+      "docs",
+      "movies.client",
+      "package-lock.json",
+      "package.json"
+    ],
+    "dependencies": [
+      {
+        "name": "FluentValidation.DependencyInjectionExtensions",
+        "version": "12.0.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "Mapster",
+        "version": "7.4.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "Mapster.DependencyInjection",
+        "version": "1.0.1",
+        "kind": "runtime"
+      },
+      {
+        "name": "MediatR",
+        "version": "12.5.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "MediatR.Contracts",
+        "version": "2.0.1",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Design",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Relational",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Tools",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "MediatR",
+        "version": "12.5.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.AspNetCore.OpenApi",
+        "version": "8.0.16",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.AspNetCore.SpaProxy",
+        "version": null,
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.Data.Sqlite",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Design",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Sqlite",
+        "version": "9.0.5",
+        "kind": "runtime"
+      },
+      {
+        "name": "SQLitePCLRaw.bundle_e_sqlite3",
+        "version": "2.1.11",
+        "kind": "runtime"
+      },
+      {
+        "name": "Swashbuckle.AspNetCore",
+        "version": "6.6.2",
+        "kind": "runtime"
+      },
+      {
+        "name": "@emotion/styled",
+        "version": "^11.14.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "@mui/material",
+        "version": "^7.1.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "axios",
+        "version": "^1.9.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "react",
+        "version": "^19.1.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "react-dom",
+        "version": "^19.1.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "react-router-dom",
+        "version": "^7.6.1",
+        "kind": "runtime"
+      },
+      {
+        "name": "semantic-ui-css",
+        "version": "^2.5.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "semver",
+        "version": "^7.7.2",
+        "kind": "runtime"
+      },
+      {
+        "name": "yarn",
+        "version": "^1.22.22",
+        "kind": "runtime"
+      },
+      {
+        "name": "@eslint/js",
+        "version": "^9.25.0",
+        "kind": "dev"
+      },
+      {
+        "name": "@types/node",
+        "version": "^22",
+        "kind": "dev"
+      },
+      {
+        "name": "@types/react",
+        "version": "^19.1.2",
+        "kind": "dev"
+      },
+      {
+        "name": "@types/react-dom",
+        "version": "^19.1.2",
+        "kind": "dev"
+      },
+      {
+        "name": "@vitejs/plugin-react",
+        "version": "^4.4.1",
+        "kind": "dev"
+      },
+      {
+        "name": "eslint",
+        "version": "^9.25.0",
+        "kind": "dev"
+      },
+      {
+        "name": "eslint-plugin-react-hooks",
+        "version": "^5.2.0",
+        "kind": "dev"
+      },
+      {
+        "name": "eslint-plugin-react-refresh",
+        "version": "^0.4.19",
+        "kind": "dev"
+      },
+      {
+        "name": "globals",
+        "version": "^16.0.0",
+        "kind": "dev"
+      },
+      {
+        "name": "typescript",
+        "version": "~5.8.3",
+        "kind": "dev"
+      },
+      {
+        "name": "typescript-eslint",
+        "version": "^8.30.1",
+        "kind": "dev"
+      },
+      {
+        "name": "vite",
+        "version": "^6.3.5",
+        "kind": "dev"
+      },
+      {
+        "name": "@emotion/styled",
+        "version": "^11.14.0",
+        "kind": "runtime"
+      },
+      {
+        "name": "semantic-ui-react",
+        "version": "^2.1.5",
+        "kind": "runtime"
+      }
+    ],
+    "build_test_run": [
+      {
+        "kind": "run",
+        "command": "npm run dev"
+      },
+      {
+        "kind": "build",
+        "command": "npm run build"
+      },
+      {
+        "kind": "run",
+        "command": "npm run lint"
+      },
+      {
+        "kind": "run",
+        "command": "npm run preview"
+      }
+    ],
+    "entrypoints": [
+      {
+        "type": "cli",
+        "path": "Movies.Application/Movies.Application.csproj"
+      },
+      {
+        "type": "cli",
+        "path": "Movies.Contracts/Movies.Contracts.csproj"
+      },
+      {
+        "type": "cli",
+        "path": "Movies.Domain/Movies.Domain.csproj"
+      },
+      {
+        "type": "cli",
+        "path": "Movies.Infrastructure/Movies.Infrastructure.csproj"
+      },
+      {
+        "type": "http",
+        "path": "Movies.Server/Program.cs"
+      }
+    ],
+    "config_keys": [
+      {
+        "name": "AllowedHosts",
+        "sensitive": false
+      },
+      {
+        "name": "ConnectionStrings:DbConnectionString",
+        "sensitive": true
+      },
+      {
+        "name": "Logging:LogLevel:Default",
+        "sensitive": false
+      },
+      {
+        "name": "Logging:LogLevel:Microsoft.AspNetCore",
+        "sensitive": false
+      }
+    ],
+    "scheduled_tasks": [],
+    "services": [],
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/api/movies"
+      },
+      {
+        "method": "POST",
+        "path": "/api/movies"
+      },
+      {
+        "method": "DELETE",
+        "path": "/api/movies/{id}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/movies/{id}"
+      },
+      {
+        "method": "PUT",
+        "path": "/api/movies/{id}"
+      }
+    ],
+    "docs_index": [
+      ".ai/CONTEXT.md",
+      ".ai/distillate.json",
+      ".ai/distillation-ollama.md",
+      ".ai/findings.md",
+      "docs/architecture.md"
+    ],
+    "ado_org": null,
+    "employer": null,
+    "team": null
+  },
+  "interpretive": {
+    "purpose": "A full-stack movie-catalog CRUD application with ASP.NET Core backend and Vite + React frontend.",
+    "consumers": [
+      "movies.client React app (primary UI consumer)",
+      "Any HTTP API client hitting /api/movies endpoints directly"
+    ],
+    "components": [
+      {
+        "name": "Movies.Server",
+        "responsibility": "ASP.NET Core minimal-API host; maps /api/movies routes, serves Swagger UI in Development, and proxies to the movies.client SPA dev server."
+      },
+      {
+        "name": "movies.client",
+        "responsibility": "React SPA consuming the API and wired into the .NET solution via Microsoft.AspNetCore.SpaProxy."
+      }
+    ],
+    "data_flow_summary": "API requests are handled by MediatR, validated using FluentValidation, mapped with Mapster, and persisted using Entity Framework Core with SQLite.",
+    "integration_points": [
+      {
+        "name": "SQLite database",
+        "description": "Persistent storage for movie data, accessed through EF Core (Microsoft.Data.Sqlite / Microsoft.EntityFrameworkCore.Sqlite). Connection string name: ConnectionStrings:DbConnectionString."
+      },
+      {
+        "name": "movies.client (frontend SPA)",
+        "description": "React/Vite SPA that consumes the /api/movies HTTP endpoints exposed by Movies.Server; proxied together in local dev via Microsoft.AspNetCore.SpaProxy."
+      }
+    ],
+    "operational_notes": [
+      "No automated tests present in the repository.",
+      "Configuration is read from ASP.NET Core's standard appsettings.json / appsettings.Development.json / environment-variable layering.",
+      "Ensure .NET 8 SDK and Node.js are installed for development."
+    ]
+  }
+}
