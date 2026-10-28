@@ -1,7 +1,7 @@
 # Architecture
 
 This repo has five components with a non-trivial request → handler → database data
-flow, so it clears the `docs/architecture.md` threshold in
+flow, so it clears the architecture-doc threshold in
 `conventions/repo-documentation.md`.
 
 ## Diagram
@@ -85,7 +85,7 @@ responses by `Movies.Server`'s `ExceptionHandler`.
   to the repository; treat as sample/dev data only, not a place to store real or
   sensitive data.
 
-No `docs/adr/` directory exists in this repo yet.
+No `.ai/adr/` directory exists in this repo yet.
 
 ---
 schema_version: 1.0.0

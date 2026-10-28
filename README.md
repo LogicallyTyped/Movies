@@ -66,7 +66,7 @@ HTTP routes exposed by `Movies.Server`:
 
 Configuration is read from ASP.NET Core's standard `appsettings.json` /
 `appsettings.Development.json` / environment-variable layering. Known
-configuration names (names only — see `docs/architecture.md` for how the
+configuration names (names only — see `.ai/architecture.md` for how the
 connection string is consumed):
 
 - `AllowedHosts`
@@ -79,7 +79,7 @@ connection string is consumed):
 `deterministic.dependencies` in `.ai/distillate.json` now walks every manifest in
 the repo (five `.csproj` files plus both `package.json` files) and reports 41 raw
 entries, up from 20 in the prior distillate — the earlier run only read the repo
-root and missed `movies.client/package.json` entirely (see `.ai/findings.md`).
+root and missed `movies.client/package.json` entirely.
 Deduplicated by package:
 
 Backend (.NET, `net8.0`): `MediatR` + `MediatR.Contracts` (CQRS-style command/query
@@ -103,7 +103,7 @@ A second, stray `package.json` at the repo root also declares `@emotion/styled`
 and `semantic-ui-react` — `semantic-ui-react` is not imported anywhere in
 `movies.client/src` (only `semantic-ui-css` is). It appears to be a leftover file
 rather than a real manifest (no `workspaces` key, not referenced by
-`movies.client.esproj` or the `.sln`) — see `.ai/findings.md`.
+`movies.client.esproj` or the `.sln`).
 
 ## Operational surface
 
@@ -114,7 +114,7 @@ Express / Kestrel profiles).
 
 ## Deeper docs
 
-- `docs/architecture.md` — component breakdown, data flow, and integration points.
+- `.ai/architecture.md` — component breakdown, data flow, and integration points.
 - `.ai/CONTEXT.md` — standards-precedence declaration for this repo.
 - `.ai/distillate.json` — machine-readable repo distillate this file was rendered
   from (see its `verification` block for the commit it was checked against).

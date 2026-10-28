@@ -318,8 +318,7 @@
       ".ai/CONTEXT.md",
       ".ai/distillate.json",
       ".ai/distillation-ollama.md",
-      ".ai/findings.md",
-      "docs/architecture.md"
+      ".ai/architecture.md"
     ],
     "ado_org": null,
     "employer": null,
